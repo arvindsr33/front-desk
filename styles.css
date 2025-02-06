@@ -1,0 +1,37 @@
+/* Copy all CSS from the style tag here */
+@media (max-width: 768px) {
+  .hero,
+  .pain-points-content,
+  .benefits-list,
+  .testimonial-grid {
+    flex-direction: column;
+  }
+  .hero-img,
+  .hero-text {
+    flex: 1 1 100%;
+  }
+
+  /* Add mobile nav styles */
+  nav ul {
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  /* Improve form fields on mobile */
+  .form-fields {
+    flex-direction: column;
+  }
+
+  /* Adjust footer layout */
+  .footer-flex {
+    flex-direction: column;
+    text-align: center;
+    gap: 1.5rem;
+  }
+}
+
+/* Add loading state for buttons */
+.btn.loading {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
