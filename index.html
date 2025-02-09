@@ -1,53 +1,398 @@
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="QuantumCare - AI-powered front desk solution for medical practices. Save $100K+ annually with automated patient scheduling & EHR integration.">
-  <title>QuantumCare - AI Front Desk</title>
-  <link rel="stylesheet" href="styles.css">
-</head> 
+<!DOCTYPE html>
+<!-- saved from url=(0031)https://quantum.cognitalab.net/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta http-equiv="origin-trial" content="A/kargTFyk8MR5ueravczef/wIlTkbVk1qXQesp39nV+xNECPdLBVeYffxrM8TmZT6RArWGQVCJ0LRivD7glcAUAAACQeyJvcmlnaW4iOiJodHRwczovL2dvb2dsZS5jb206NDQzIiwiZmVhdHVyZSI6IkRpc2FibGVUaGlyZFBhcnR5U3RvcmFnZVBhcnRpdGlvbmluZzIiLCJleHBpcnkiOjE3NDIzNDIzOTksImlzU3ViZG9tYWluIjp0cnVlLCJpc1RoaXJkUGFydHkiOnRydWV9"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="HandheldFriendly" content="true"><title>Revolutionize Your Front Desk with AI</title><meta name="description" content="Cut costs and improve efficiency with QuantumCare&#39;s AI front desk. Save $100,000+ annually and enhance patient satisfaction."><meta name="keywords" content="ai front desk, patient scheduling, cost savings, virtual assistant, healthcare automation"><style>
+        .animated-lightbox {
+          transition: visibility 0.5s, opacity 0.5s;
+          visibility: hidden;
+          opacity: 0;
+        }
 
-<nav>
-  <ul>
-    <li><a href="#about">About</a></li>
-    <li><a href="#pricing">Pricing</a></li>
-    <li><a href="#blog">Blog</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-</nav>
+        .show-lightbox {
+          opacity: 1;
+          display: block !important;
+          visibility: visible;
+        }
+    </style><link rel="shortcut icon" href="https://quantum.cognitalab.net/" type="image/x-icon"><link rel="preconnect" href="https://styles.assets-landingi.com/"><link rel="preconnect" href="https://old.assets-landingi.com/"><link rel="preconnect" href="https://fonts.googleapis.com/"><link rel="preconnect" href="https://images.assets-landingi.com/"><link rel="preconnect" href="https://cdn.lugc.link/">
+<script type="text/javascript" async="" charset="utf-8" src="./quantum_care_front_desk_files/recaptcha__en.js" crossorigin="anonymous" integrity="sha384-P3vOnwOQjXmCJwx1vTvZAroj9OVXiVWsH201GY3AuWFi+LVyRVQwt0M/4hdSxMBf"></script><script>
+const verifyRecaptchaOnSubmit = function (e) {
+  e.preventDefault();
+  showButtonSpinner($(this));
+  const recaptchaAction = 'landing_form_submit';
+  let that = this;
+  grecaptcha.execute('6LdKrHsjAAAAABdQ3WpMFH24cXPVkm1YA-KQWjW-', {action: recaptchaAction})
+    .then(function (token) {
+        $(that).parents('form').prepend('<input type="hidden" name="g-recaptchav3-token" value="' + token + '">');
+        hideButtonSpinner($(that));
+        $(that).unbind('click', verifyRecaptchaOnSubmit).click();
+      }
+    );
+}
 
-<form action="#" method="POST" onsubmit="alert('Form submitted!'); return false;" aria-label="Demo Request Form">
-  <!-- Add form elements here -->
-</form> 
+const showButtonSpinner = function (button) {
+  let overlay = button.find('.widget-overlay');
+  overlay.css('color', button.css('color'))
+    .append('<i class="fa fa-spinner fa-spin"></i>');
+  button.css('color', 'transparent');
+}
 
-<footer>
-  <!-- Add footer content here -->
-</footer>
+const hideButtonSpinner = function (button) {
+  let overlay = button.find('.widget-overlay');
+  button.css('color', '');
+  overlay.empty();
+}
 
-<!-- For the hero image -->
-<div class="hero-img">
-  <img src="https://placehold.co/600x400" alt="AI replacing busy clinic front desk" />
+const injectRecaptchaScript = function () {
+  if (window.isRecaptchaScriptInjected) {
+    return;
+  }
+  
+  window.isRecaptchaScriptInjected = true;
+  let recaptchaScriptTag = document.createElement("script");
+  recaptchaScriptTag.type = "text/javascript";
+  recaptchaScriptTag.src = "https://www.google.com/recaptcha/api.js?render=6LdKrHsjAAAAABdQ3WpMFH24cXPVkm1YA-KQWjW-";
+  $("head").append(recaptchaScriptTag);
+}
+
+function initRecaptchaOnFormSubmit(formSelector) {  
+  let forms = $(formSelector).filter(function () {
+    return $('.g-recaptcha', this).length === 0;
+  });
+
+  if (forms.length > 0) {
+    injectRecaptchaScript();
+    forms.each(function () {
+      $('button[type="submit"]', this).click(verifyRecaptchaOnSubmit);
+    });
+  }
+}
+
+function initRecaptchaOnEvent(event) {
+  event.currentTarget.removeEventListener(event.type, initRecaptchaOnEvent);
+    
+  if (window.isRecaptchaInitialized) {
+    return;
+  }
+
+  window.isRecaptchaInitialized = true;
+  initRecaptchaOnFormSubmit('.widget-section form, .widget-smartsection form');
+}
+
+function waitForJQuery(method) {
+    if (window.jQuery) {
+        method(); 
+    } else {
+        setTimeout(function() { waitForJQuery(method) }, 100);
+    }
+}
+
+waitForJQuery(function () {
+  $('head').on('lightboxes-ready', function () {
+    if (window.isRecaptchaInitialized && !window.isRecaptchaInitializedForLightboxes) {
+      window.isRecaptchaInitializedForLightboxes = true;
+      initRecaptchaOnFormSubmit('.landingi-popup form');
+    } /* no else here, selector ".widget-section form" will bind forms from lightboxes on event */
+  });
+
+  document.addEventListener('scroll', initRecaptchaOnEvent);
+  document.addEventListener('mousemove', initRecaptchaOnEvent);
+  document.addEventListener('touchstart', initRecaptchaOnEvent);
+});
+</script><style>
+.grecaptcha-badge {
+    width: 70px !important;
+    overflow: hidden !important;
+    transition: all 0.3s ease !important;
+    left: -7px !important;
+    bottom: 10px !important;
+    transform: scale(0.8) !important;
+    z-index: 1000000 !important;
+}
+.grecaptcha-badge:hover {
+    width: 256px !important;
+    left: -2px !important;
+    transform: scale(1) !important;
+}
+
+@media (max-width:764px) {
+    .grecaptcha-badge {
+        width: 62px !important;
+        height: 55px !important;
+        bottom: 1px !important;
+    }
+}
+</style><script fetchpriority="high">
+   (function(src, cb) {
+    var s = document.createElement('script'); s.setAttribute('src', src); s.setAttribute('fetchpriority', 'high');
+    s.onload = cb; (document.head || document.body).appendChild(s);
+  })('https://ucarecdn.com/libs/blinkloader/3.x/blinkloader.min.js', function() {
+    window.Blinkloader.optimize({
+      fadeIn:false,
+      lazyload:true,
+      smartCompression:true,
+      responsive:true,
+      retina:true,
+      webp:true,
+      pubkey:'ca6af56c901b93c58ffa',
+      cdnBase:'https://cdn.lugc.link'
+    });
+    
+    if (window.location !== window.parent.location) {
+        window.onload = function() {
+            setTimeout(function () {
+                window.dispatchEvent(new CustomEvent('scroll'))
+            }, 500);
+        };
+    }
+  })
+</script><script src="./quantum_care_front_desk_files/blinkloader.min.js" fetchpriority="high"></script>
+
+<link href="./quantum_care_front_desk_files/css" type="text/css" rel="stylesheet" as="style" fetchpriority="high" onload="this.onload=null;this.rel=&#39;stylesheet&#39;"><link href="./quantum_care_front_desk_files/css(1)" type="text/css" rel="stylesheet" as="style" fetchpriority="high" onload="this.onload=null;this.rel=&#39;stylesheet&#39;"><link href="./quantum_care_front_desk_files/css(2)" type="text/css" rel="stylesheet" as="style" fetchpriority="high" onload="this.onload=null;this.rel=&#39;stylesheet&#39;"><link href="./quantum_care_front_desk_files/280125-landend-base.css" type="text/css" rel="stylesheet" as="style" onload="this.onload=null;this.rel=&#39;stylesheet&#39;"><link href="./quantum_care_front_desk_files/base.css" type="text/css" rel="stylesheet"><script>
+    var landingiInternalDetails = {
+        'landing_id': '1799741',
+        'landing_hash': 'dca90eea3b305c60a004',
+        'landing_variant_hash': '',
+        'landing_name': 'Quantum+Care',
+        'landing_lang': 'en',
+        'account_uuid': '75ff4164-e518-11ef-bb36-32af16f8ce07',
+        'apikey': 'dc8ed8b3-37db-4eb1-b0b5-002a1d5fccc1'
+   }
+</script><script>
+(async function (w, d) {
+    try {
+        const response = await w.fetch(
+            'https://' + 'tagmanager.landingi.io' + '/account/' + '75ff4164-e518-11ef-bb36-32af16f8ce07'
+        );
+        const gtm = await response.json();
+
+        if (gtm) {
+            const script = d.head.getElementsByTagName('script')[0];
+            const tmpl = d.createElement('template');
+            tmpl.innerHTML = gtm;
+            tmpl.content.childNodes.forEach((node) => {
+                let elem = node;
+
+                if ('SCRIPT' === node.nodeName) {
+                    elem = d.createElement('script');
+
+                    if (node.textContent) {
+                        elem.textContent = node.textContent;
+                    }
+
+                    if (node.src) {
+                        elem.src = node.src;
+                        elem.type = node.type;
+                    }
+
+                    script.parentNode.insertBefore(elem, script);
+                }
+
+                if ('STYLE' === node.nodeName) {
+                    elem = d.createElement('style');
+
+                    if (node.textContent) {
+                        elem.textContent = node.textContent;
+                    }
+
+                    script.parentNode.insertBefore(elem, script);
+                }
+            })
+        }
+    } catch (err) {
+        console.log(err);
+    }
+})(window, document);
+</script><script>
+window.lazySizesConfig = window.lazySizesConfig || {};
+window.lazySizesConfig.init = false;
+</script>
+<script data-cookieconsent="ignore" type="text/javascript" src="./quantum_care_front_desk_files/lazysizes.min.js"></script>
+<script>
+lazySizes.init();
+</script><script defer="" fetchpriority="low" src="./quantum_care_front_desk_files/lightbox-render.js"></script><script>
+window.addEventListener('load', function () {
+    LightboxRender.init({
+        useAaf: false
+    })
+});
+</script><script type="text/javascript" src="./quantum_care_front_desk_files/api.js"></script></head><body id="TxvpQxGuo6CkxW3pseVeXnPkXz3TAWhR">
+<div id="l3mH4RPdA2P8wn5xUn0c31mn3VHaQHqD" class="widget widget-section ">
+    <div class="row">
+        
+        <div class="container ">
+            
+            <div id="x3QeHsQKQNVXEJfS0ZKPuDISGLJUEk0T" class="widget widget-text"><h1>Your Seamless AI Front Desk</h1></div><div id="zwRHgw13zJEp60qCR4007cRQSa40RUv3" class="widget widget-text"><p><b>QuantumCare</b></p></div><img id="dkCAvTuqsQ3BzKyHm7fmC8CeaWJ5U65N" width="36" height="36" data-original="https://images.assets-landingi.com/uc/140e6824-a45c-4e3e-b4a4-f54254d3717e/icons8redux500.svg" class="widget widget-image" alt="Image" fetchpriority="high" src="./quantum_care_front_desk_files/saved_resource">
+<a href="https://quantum.cognitalab.net/#DxHTl63DA48sHetRC8AG4y0gCkEID9TL" id="qZwHOZpSzMOUtWkV2Dme7FeTZz2T6yT0" aria-label="About" class="widget widget-button" version="3" subtype="anchor" rel="noopener noreferrer">
+    <div class="widget-overlay"></div>
+    <div id="e9XR6edtdgZsfGhSyz7OExlK4KLaI6Fr" class="widget widget-text">About</div>
+</a><a href="https://quantum.cognitalab.net/#WZbE62FNk5OkweSDZ9g3mpBCeqmS6kpu" id="MUI78PXCn8IGKZIWZDZ7c0BXUaAUKT7t" aria-label="Benefits" class="widget widget-button" version="3" subtype="anchor" rel="noopener noreferrer">
+    <div class="widget-overlay"></div>
+    <div id="Z0R1t30K0XT0sW5pdSWC9WwTfP8LZ42X" class="widget widget-text">Benefits</div>
+</a><a href="https://quantum.cognitalab.net/#ylFHxaWU6gek187iISO5gkkJuOfRbVFH" id="OCI9pQPo1RX5Gl5XJMRU19AFDx2Gx9Ru" aria-label="Get a Quote" class="widget widget-button" version="3" subtype="anchor" rel="noopener noreferrer">
+    <div class="widget-overlay"></div>
+    <div id="kuvKbwfJVknIxCzguMQGi5EHOCoZga8R" class="widget widget-text">Get a Quote</div>
+</a><a href="https://quantum.cognitalab.net/#h86TB8l0r8N4XbWVhb6dkRozDwLPuBNp" id="ygd1reNioFON6pbNn5FhqbJQxOlDf4C0" aria-label="Faq" class="widget widget-button" version="3" subtype="anchor" rel="noopener noreferrer">
+    <div class="widget-overlay"></div>
+    <div id="wKvm4vnHL4liAUNtlzrzI9PNzotQQG9Q" class="widget widget-text">Faq</div>
+</a><a href="https://quantum.cognitalab.net/#z8zuzFIPQPcRXFz1RgTW2yA3R68ySlbm" id="VNtxRVqfLzNyRehBDkm74OgupkmaF6GE" aria-label="Contact" class="widget widget-button" version="3" subtype="anchor" rel="noopener noreferrer">
+    <div class="widget-overlay"></div>
+    <div id="z73OPa4mQUGmEETCEfiApBSpSOXKaiCV" class="widget widget-text">Contact</div>
+</a><a href="https://quantum.cognitalab.net/#kHrklQIiioqCxAZANas6ifqWvAztzrvT" id="A1zTo2wheyc1sIEDWI7HVnkJFfLid27J" aria-label="Book a Free Demo" class="widget widget-button" version="3" subtype="anchor" rel="noopener noreferrer">
+    <div class="widget-overlay"></div>
+    <div id="J457OGvgpSz5fxR2s8mt0fEvq1WuoXMx" class="widget widget-text">Book a Free Demo</div>
+</a><div id="A85L5WyDd6euf9QX5U3tioWS4TDQ9FTF" class="widget widget-text"><h2>Tired of front desk expenses, staffing challenges, and missed patient appointments?  QuantumCare's AI-powered, 24/7 front desk eliminates the hassle—while saving you over $100,000 per year</h2></div><img id="HyDG4LMHAK8WTNc7Tp57q12pnrzdzH1a" width="354" height="631" data-original="https://images.assets-landingi.com/uc/cb9f104d-bb7a-4aa2-9e11-2ac52e722583/rectangle_841.webp" class="widget widget-image" src="./quantum_care_front_desk_files/rectangle_84 (1).webp" alt="Image" fetchpriority="high">
+<div id="EtmkSdaXlxKmclJBxw4mAqyPdMQSFFge" class="widget widget-box"></div><div id="V3uMucKUQu8l6PkF5rFlIUc0K0qdlTap" class="widget widget-box"></div><div id="JwwnZW3h1ZNsar2KCo5nKM8E1t5iOCZs" class="widget widget-text"><p> 24/7</p></div><img id="CZrEha341fwbWA8oAlCdTi63T5zBpz5C" width="114" height="80" data-original="https://images.assets-landingi.com/uc/99f2d8cf-513d-454d-98b5-2e98b732dd54/Group522.svg" class="widget widget-image" alt="Image" fetchpriority="high" src="./quantum_care_front_desk_files/saved_resource(1)">
+<div id="Fzsblg3VVzp8QWtyhM6NsPw4UzS8sRc2" class="widget widget-text"><p>Virtual</p></div><div id="GMVHrLMxfLdMc20owE9B573spZ1uAwO2" class="widget widget-box adaptive-delivery-prevent-bg" style="background-size: cover; background-position: center center; background-repeat: no-repeat; background-image: url(&quot;https://cdn.lugc.link/6a90e5e2-2365-41cd-acc0-40606847989b/-/stretch/off/-/format/auto/-/quality/normal/-/resize/15x15/&quot;);"></div><div id="nAMKXPsiaB9kgXmblvKcJXAcTmPoLvVl" class="widget widget-box adaptive-delivery-prevent-bg" style="background-size: cover; background-position: center center; background-repeat: no-repeat; background-image: url(&quot;https://cdn.lugc.link/6a90e5e2-2365-41cd-acc0-40606847989b/-/stretch/off/-/format/auto/-/quality/normal/-/resize/15x15/&quot;);"></div>
+        </div>
+    </div>
 </div>
-
-<!-- For benefit icons -->
-<div class="benefit">
-  <img src="https://placehold.co/50" alt="AI icon" />
+<div id="zKdw0qF27iRiJ6lCMhGmV9e1dS66VE8I" class="widget widget-section ">
+    <div class="row">
+        
+        <div class="container ">
+            
+            <div id="KEsrSkUil3PwuSsscs724ZdxkInmVXWT" class="widget widget-text"><h3>Are Front Desk Challenges Draining Your Profits?</h3></div>
+        </div>
+    </div>
 </div>
-
-<!-- For the demo video section -->
-<section class="quick-demo">
-  <div class="container">
-    <h2 class="section-title">See It in Action</h2>
-    <img src="https://placehold.co/800x450" alt="Product demo placeholder">
-  </div>
-</section>
-
-<!-- For social media icons in footer -->
-<div class="social-icons">
-  <a href="#"><img src="https://placehold.co/24" alt="LinkedIn"></a>
-  <a href="#"><img src="https://placehold.co/24" alt="Twitter"></a>
-  <a href="#"><img src="https://placehold.co/24" alt="Facebook"></a>
+<div id="iuvqlsfHnyNumIcEN5VaK8gixbP9LSTk" class="widget widget-section ">
+    <div class="row">
+        
+        <div class="container ">
+            
+            <div id="DTeIvuto8STTkOWfrs4WJSL4aFlf7hE9" class="widget widget-text"><p><b>The Hidden Cost of Human Error</b></p></div><div id="ctyNOWp8WGczNb8BTtlXb2hPwcZ4EAJ4" class="widget widget-text"><p>Missed appointments, lost patient calls, and scheduling mistakes cost you time, money, and patients</p></div><div id="Lyo90P2Wm1dsq14w72vOMmFtPXtHrRdE" class="widget widget-text"><p>Excessive hours spent on scheduling, insurance verification, and routine calls add up fast</p></div><div id="v0NevnQUiDw4PaGxzdiTO6IHi15dQKuI" class="widget widget-text"><p>Constantly training new staff, dealing with absences – it's a drain on your time and resources</p></div><div id="P5uQv4H9TmWFMr47xAUM083Qvi9Jww4x" class="widget widget-text"><p><b>Endless Administrative Burden</b></p></div><div id="k398IA5h3qJ92q5ghbURavvZaJ8T90rp" class="widget widget-text"><p><b>Staffing Headaches &amp; High Turnover</b></p></div><img src="./quantum_care_front_desk_files/icon_af2ca0ef0c016682cb1762bf411f1c70e6927f74.svg" id="QGA1p7HumNbgRDG5WfL7KOoOllevHSCI" class="widget widget-svgicon" alt="Icon"><img src="./quantum_care_front_desk_files/icon_fc3016a992f91fd87b41273a95cf0037cf9bd277.svg" id="DUfnx4Zob3MHMwzOe8knOtKdcJTPli0y" class="widget widget-svgicon" alt="Icon"><img src="./quantum_care_front_desk_files/icon_c04eeeadaf3db060c22bf4026f1240c3fc6e9595.svg" id="FS5JNlpT82iGyVoy2Xf4abE8nXE1TGBs" class="widget widget-svgicon" alt="Icon">
+        </div>
+    </div>
 </div>
+<div id="DxHTl63DA48sHetRC8AG4y0gCkEID9TL" class="widget widget-section ">
+    <div class="row">
+        
+        <div class="container ">
+            
+            <div id="ccKnzWrwZDVVzC9GsaURPDbebxTEDKif" class="widget widget-text"><h3>Introducing QuantumCare: Your Intelligent 24/7 Virtual Front Desk </h3></div>
+        </div>
+    </div>
+</div>
+<div id="WZbE62FNk5OkweSDZ9g3mpBCeqmS6kpu" class="widget widget-section ">
+    <div class="row">
+        
+        <div class="container ">
+            
+            <div id="X9AVZxx1dyBHvBMb2DldS8rFJCogGkEP" class="widget widget-text"><p>Intelligent</p></div><div id="bZA0Qsoc3Cvr6ukzKRpMSkyI40A2AhNg" class="widget widget-text"><p>Understands patients' needs and urgency, ensuring they get the <b>best-fit appointment</b>—improving efficiency and satisfaction</p></div><img src="./quantum_care_front_desk_files/icon_9675e41e6e46007cdbbe7a539a173bc4fdd701ff.svg" id="CK6rbc9MyfpPKSm7CL2pI1g7E291doxq" class="widget widget-svgicon" alt="Icon"><div id="rC3Gy3bgx9Zf33ugHfEggMi8r76KOly8" class="widget widget-text"><p>Effortless EHR integration for instant patient verification, insurance validation, and medical record requests </p></div><div id="N78AIP01TatvehqHqqfTw6IfTP46HvAD" class="widget widget-text"><p>Seamless </p></div><img src="./quantum_care_front_desk_files/icon_21333f6a5bca33324c42449b8f01d8bbbc71a0f9.svg" id="d74E6RHr8ORMIqvQxrGgeNN94oWuVohD" class="widget widget-svgicon" alt="Icon"><div id="eEiI5S0T8XrJRqKFQDN8yOwHRfryO8cS" class="widget widget-text"><p>Never miss a call again! <b>Available 24/7</b>, handling appointments, reminders, and follow-ups to keep your practice running smoothly.</p></div><div id="ZmOswmbsNCpRPRLebIflzaQCWuTIEBJM" class="widget widget-text"><p>All-Around</p></div><img src="./quantum_care_front_desk_files/icon_bf866634f083773d57f59103c860149190aa0420.svg" id="d7C90F8HvsDFztNwLM2BvbtmifghTM3e" class="widget widget-svgicon" alt="Icon"><div id="R0aNSZ7iuTZ5iiOPWewKOcNuzCuyDGtp" class="widget widget-box"></div><div id="QMqpIugr0ptoPyrMuWT3FkiAxTHmgHL9" class="widget widget-box"></div><div id="hqyvLHaT0TnaWzwp6OcManWihGHpdo2y" class="widget widget-box"></div>
+        </div>
+    </div>
+</div>
+<div id="LGeSUAvKWRNbFeTZRcZAWiM8DlMkypbh" class="widget widget-section ">
+    <div class="row">
+        
+        <div class="container ">
+            
+            <div id="XXgFsW5FsENfcLpbAK55GOE08nwHImzK" class="widget widget-text"><h3>Game Changing Benefits</h3></div>
+        </div>
+    </div>
+</div>
+<div id="V8e8DcGTAkPCT2RuHAbb6CJo5UGfg5bT" class="widget widget-section ">
+    <div class="row">
+        
+        <div class="container ">
+            
+            <div id="HDGIPmyXDe8DqrnnceBrhWgKr4sQrQvG" class="widget widget-box"></div><div id="hxK4ulus8NxsL0GJSPire2TL81pvWwFM" class="widget widget-text"><p>Effortless Scheduling</p></div><div id="zKR9ZL0y8DHOUv8qgQ0QXoXL1mo909TW" class="widget widget-text"><p>AI ensure flawless scheduling and follow-ups—so your front desk staff can focus on the <b>in-person experience</b></p></div><img id="WnlB3kruENgGB6XS9zEnc0FE2KpXDQzX" width="320" height="258" class="widget widget-image lazyload" data-original="https://images.assets-landingi.com/uc/993a7257-3394-43df-8137-4dc014aa37ce/rectangle_82.webp" data-src="https://images.assets-landingi.com/uc/993a7257-3394-43df-8137-4dc014aa37ce/rectangle_82.webp" alt="Image" decoding="async">
+<div id="ngNPOQMIBTN7yBF1c3Xhvc2lEI7celnx" class="widget widget-text"><p>Cut front desk costs <b>by over 60%</b> while maintaining seamless operations—replacing 1-3 full-time staff </p></div><div id="a0bffmgTpVt03ZzMhNeMeHF932wnTG34" class="widget widget-text"><p>Boost Profitability</p></div><div id="xpvWAXRORCTvZdFkySzTtbb9H0qHmtdI" class="widget widget-box"></div><div id="bc0EHVlvLpCtJNLiphH6uBXkhJbkJSCg" class="widget widget-text"><p>Reduce wait times, provide instant answers to common questions, and deliver courteous, human-like interactions—creating happier, more loyal patients</p></div><div id="DUDgp8MgZNTZ9DhCxSWvXlhNeW9gJPqT" class="widget widget-text"><p>Elevate Experience</p></div><div id="lwCAg1m3yz85pLMyM5t7KuJT43ynOAeK" class="widget widget-box"></div><img id="gO9LcvxAceOeTssrwoomQSgJZnJ3EiZ2" width="320" height="213" data-original="https://images.assets-landingi.com/uc/0603ba84-c950-47e3-831f-db41af8e63a7/maturemaledoctorsmilingtowardscamerasciencephotolibrary.jpg" class="widget widget-image" alt="Image" decoding="async" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
+<img id="ndM6QuUNliKOz1omMSQSiizGothWScfM" width="320" height="258" class="widget widget-image lazyload" data-original="https://images.assets-landingi.com/uc/b5617f3c-5137-4eea-b134-4a77221ed3d6/rectangle_78.webp" data-src="https://images.assets-landingi.com/uc/b5617f3c-5137-4eea-b134-4a77221ed3d6/rectangle_78.webp" alt="Image" decoding="async">
 
-<script src="script.js"></script>
-</body>
-</html> 
+        </div>
+    </div>
+</div>
+<div id="ylFHxaWU6gek187iISO5gkkJuOfRbVFH" class="widget widget-section ">
+    <div class="row">
+        
+        <div class="container ">
+            
+            <div id="qmmu1gZEonHOdI2nUInVbJaR0tsORzri" class="widget widget-text"><h3>Ready to Reclaim Your Practice?</h3></div><form id="wNi3bu6RwohEcz6U25eNE6C035vTxQTQ" class="widget widget-form" data-orientation="vertical" data-version="2.1" action="https://quantum.cognitalab.net/submit/dca90eea3b305c60a004" enctype="multipart/form-data" method="post" novalidate="" data-hash="dca90eea3b305c60a004"><div id="idsAEkcZcS2c6MLKh15KJM9X8s4t1cgR" class="widget widget-container clearfix"><label id="TDFTCarlJS7EDffJHccnuIphs8onGUdn" class="widget widget-text widget-regular-label widget-label" for="JkycTb5HfF8iCHCLzQTDM09bam04Tn6V">Name</label><input class="widget widget-input-text" id="JkycTb5HfF8iCHCLzQTDM09bam04Tn6V" type="text" subtype="name" placeholder="Name" parentid="wNi3bu6RwohEcz6U25eNE6C035vTxQTQ" name="name" value=""></div><div id="NpmfplpeXUZoHKJHhqEhr90y2MTEUvCK" class="widget widget-container clearfix"><label id="X80c5OPBTz655Wfer9h5b3622TJE93UV" class="widget widget-text widget-regular-label widget-label" for="aET3wcGFkCacNeew3J71ILswymCtR6PO">Email</label><input class="widget widget-input-text" id="aET3wcGFkCacNeew3J71ILswymCtR6PO" type="email" subtype="email" parentid="wNi3bu6RwohEcz6U25eNE6C035vTxQTQ" placeholder="Email" name="email" value=""></div><div id="VsWVpn4GzCZGvheyXr9tFvH5Q6HxG3lo" class="widget widget-container clearfix"><label id="pEsz4oMvco79mbIFyCE58XurpEK3XTdo" class="widget widget-text widget-regular-label widget-label" for="oe7fMaA8mrTToNLWds54FLrAEsUk0mFp">Practice Name</label><input class="widget widget-input-text" id="oe7fMaA8mrTToNLWds54FLrAEsUk0mFp" type="text" placeholder="Name of Your Practice" parentid="wNi3bu6RwohEcz6U25eNE6C035vTxQTQ" name="text" value=""></div><div id="eux4pHTdMJLTFrVMm2hsyc3JBwWcEC1C" class="widget widget-container clearfix"><label id="Ft02RpF77c7bo1b6uVguKnTv2wpTbZHa" class="widget widget-text widget-regular-label widget-label" for="FZ04QE6DA2ecrGiKAIwildU3XJ0sPQGi">City</label><input class="widget widget-input-text" id="FZ04QE6DA2ecrGiKAIwildU3XJ0sPQGi" type="text" placeholder="City" parentid="wNi3bu6RwohEcz6U25eNE6C035vTxQTQ" name="text1" value=""></div><div id="xbwtZWVHHy3ETgimcsIbWhTf26FKOPSk" class="widget widget-container clearfix"><label id="Itw224wBhS2Cpa8a21uxWrwMAL7tGU9O" class="widget widget-text widget-regular-label widget-label" for="OaKepBpGmo4VgbvWkMJTlnhPTXRWMp2q">Spending</label><textarea class="widget widget-textarea" id="OaKepBpGmo4VgbvWkMJTlnhPTXRWMp2q" placeholder="Describe your front desk expense and the EHR you use" parentid="wNi3bu6RwohEcz6U25eNE6C035vTxQTQ" name="text2"></textarea></div><div id="s7EsinQbDaBiKdheiunxpn40F53IirXx" class="widget widget-container clearfix"><label id="QPA2UvSDlepPMAW188SZSGUrCSMGPfD6" class="widget widget-text widget-regular-label widget-label" for="w1inIBSNxNI8vdIziFtpsHqhulPxxxw7">Phone</label><input class="widget widget-input-text" id="w1inIBSNxNI8vdIziFtpsHqhulPxxxw7" type="tel" subtype="phone" placeholder="Phone" parentid="wNi3bu6RwohEcz6U25eNE6C035vTxQTQ" name="phone" value=""></div><div id="NEId3nxMxnypDHPWlIcozwlVldFbk2ps" class="widget widget-container input-button-container clearfix"><button class="widget widget-input-button" type="submit" id="ToGB814mXQJQOUHXdupEQ9n4MT4yuvT7" parentid="wNi3bu6RwohEcz6U25eNE6C035vTxQTQ"><div class="widget-overlay"></div>Estimate My Savings</button></div><input type="hidden" name="_name_" value=""><input type="hidden" name="_uid" value="wNi3bu6RwohEcz6U25eNE6C035vTxQTQ"><input type="hidden" name="_redirect" value=""></form>
+        </div>
+    </div>
+</div>
+<div id="h86TB8l0r8N4XbWVhb6dkRozDwLPuBNp" class="widget widget-section ">
+    <div class="row">
+        
+        <div class="container ">
+            
+            <div id="d6XFB2Th9Se1MTZ7RmimGAO25pTJdVyH" class="widget widget-text"><h3>Frequently Asked Questions</h3></div>
+        </div>
+    </div>
+</div>
+<div id="PKRUODeZOLBcnnn9IdAgm4nwJfnT48d7" class="widget widget-section ">
+    <div class="row">
+        
+        <div class="container ">
+            
+            <div id="KAIscqn3AAbhqc1C6wbJHBtpuLOF8gJ8" class="widget widget-text"><p>What is QuantumCare and how does it work?</p></div><div id="ITGWQ0cNOPFV5E4BaHhGagkb9XQOIVTl" class="widget widget-box"></div><div id="BkaqFl4RZq87g6r9Q4V45gRb6woP8xpf" class="widget widget-text"><p>QuantumCare is an AI-powered virtual front desk that handles patient calls, appointment scheduling, insurance verification, and follow-ups—reducing admin workload while ensuring patients receive timely support.</p></div><div id="lQnoW8cQ2oThIrSBTwIoeNeoUTtsdQFT" class="widget widget-text"><p><span style="text-transform: uppercase;">General questions</span></p></div><div id="hJPxGUhf6uIrlPGyP2wQ8WOkEAzTukWJ" class="widget widget-text"><p>Our AI intelligently understands patient needs, urgency, and availability, ensuring seamless scheduling without double bookings or missed appointments.</p></div><div id="GyTRIbzzZ3t3RN7aLf6qmW8KWhb4sO75" class="widget widget-text"><p>How does AI improve scheduling efficiency?</p></div>
+        </div>
+    </div>
+</div>
+<div id="Kr741XoFGOO9BJ4r9Ck3CDiGD9ID9P14" class="widget widget-section ">
+    <div class="row">
+        
+        <div class="container ">
+            
+            <div id="mKUhfsdNl5KtTMwJDt8eVL2BKF8lnPTS" class="widget widget-text"><p>How much can I save with QuantumCare?</p></div><div id="Ev6uADUox0I6mz6TR1dW7rAHvv0brs1i" class="widget widget-box"></div><div id="UhenRR9oOzg8nZKxLaMe9kf2gThCEgLu" class="widget widget-text"><p>Most practices save over 70% on front desk costs, reducing expenses by $100,000+ annually by replacing 1-3 full-time staff members with AI-driven automation.</p></div><div id="cIMJtceDAaAENQqmTFzdsLUfuoLBil3k" class="widget widget-text"><p><span style="text-transform: uppercase;">COst &amp; savings</span></p></div><div id="k2KvdtNAASp27mNgInlKnFX3X4uVn2rG" class="widget widget-text"><p>What are the pricing plans?</p></div><div id="dAzeVUaet2UH22BunvFi78J6pDITLm49" class="widget widget-text"><p>We offer flexible pricing based on practice size and call volume. Contact us for a custom quote or get an instant savings estimate.</p></div>
+        </div>
+    </div>
+</div>
+<div id="dT9VtNaXIf8azShLbmppXGvQSHp99T9E" class="widget widget-section ">
+    <div class="row">
+        
+        <div class="container ">
+            
+            <div id="c455ChmOXLJXsfkif4zr9wdTzt5eAwQl" class="widget widget-text"><p>Does it integrate with my existing EHR system?</p></div><div id="VB5vQSPvmiv5DTItiJO8I5aNMDS6O3wH" class="widget widget-box"></div><div id="qO7eIm7oC4ttykRV6g79Zw7fXuVk44mG" class="widget widget-text"><p>Yes! QuantumCare seamlessly integrates with all major EHR systems for real-time patient verification and insurance validation.</p></div><div id="aAHC3WnKX4HFsFZJdRVv0kvGdMoArDCO" class="widget widget-text"><p><span style="text-transform: uppercase;">integration &amp; implementation</span></p></div><div id="IVTgsLwDGvvWtF1o9vXN0EqCbB5E4880" class="widget widget-text"><p>How long does it take to set up?</p></div><div id="A4QT9ZeQ86TUlUksWZbwPWL4W7dk8e0U" class="widget widget-text"><p>Setup typically takes less than a week, and our team provides full onboarding and training.</p></div>
+        </div>
+    </div>
+</div>
+<div id="lusQNaD6XCVuV66VtKEUkyVN8HTNZxKk" class="widget widget-section ">
+    <div class="row">
+        
+        <div class="container ">
+            
+            <div id="pDmO1oQWgUFX9sXdr6BqbhEMf6ryLEhL" class="widget widget-text"><p>Is patient data secure?</p></div><div id="HT1KOHXTE4wu772bdTT7i1kTDwNr9lG1" class="widget widget-box"></div><div id="HP6nppnbNm4zQZnEgv9KpuXW7g9hQvHz" class="widget widget-text"><p>Absolutely. We use HIPAA-compliant security measures to protect all patient data and ensure compliance with industry regulations.</p></div><div id="uclA4F2A4Ns55ZcTz0zkLW7HAqP3TKea" class="widget widget-text"><p><span style="text-transform: uppercase;">Security &amp; Reliability</span></p></div><div id="QpB6faBtWThcByNq9WriLfnzuTxLV3F6" class="widget widget-text"><p>Can QuantumCare handle high call volumes?</p></div><div id="vTdpUbOnzDs4LByT0IHe6vsxXBvoNtaQ" class="widget widget-text"><p>Yes! Our AI can handle unlimited call volume, ensuring no missed calls, even during peak hours.</p></div>
+        </div>
+    </div>
+</div>
+<div id="kHrklQIiioqCxAZANas6ifqWvAztzrvT" class="widget widget-section ">
+    <div class="row">
+        
+        <div class="container ">
+            
+            <div id="pQSP3v3p4ShuzJRSZd7dkKSFL7woOOLN" class="widget widget-text"><h3>Want to See it in Action?</h3></div><div id="hUG3sWhs9x3dmMGSFDDMCivE5N4DXuK3" class="widget widget-box"></div><form id="uHlVRp4oPONe0UVgxMOBLT6hSeGerDpr" class="widget widget-form" data-orientation="vertical" data-version="2.1" action="https://quantum.cognitalab.net/submit/dca90eea3b305c60a004" enctype="multipart/form-data" method="post" novalidate="" data-hash="dca90eea3b305c60a004"><div id="x8ESP5MkyTyUUEmw3Ny2NN48nrGFEixt" class="widget widget-container clearfix"><label id="CPwfSz4rQrlwTqLZ78xTkNhwXN3KJRmH" class="widget widget-text widget-regular-label widget-label" for="Maq9qBTIsW6Fge3s79VasF5AVsABQyoU">Name</label><input class="widget widget-input-text" id="Maq9qBTIsW6Fge3s79VasF5AVsABQyoU" type="text" subtype="name" placeholder="Name" parentid="uHlVRp4oPONe0UVgxMOBLT6hSeGerDpr" name="name" value=""></div><div id="OUnvzVaOgTbVT0EvZL7xvxqESdiLck0N" class="widget widget-container clearfix"><label id="wRX3zK51ITqaIBaGT93zoDF8z5x9OcaG" class="widget widget-text widget-regular-label widget-label" for="wce4TLUePixkvgmUUJ3LOTK3xO2zwxkS">Email</label><input class="widget widget-input-text" id="wce4TLUePixkvgmUUJ3LOTK3xO2zwxkS" type="email" subtype="email" parentid="uHlVRp4oPONe0UVgxMOBLT6hSeGerDpr" placeholder="Email" name="email" value=""></div><div id="ay484a0xEeWR4GNgeWAE5UXrdA8HKHfT" class="widget widget-container clearfix"><label id="icTaKoR5iod4rzAUQCskfmrBRfFg0zF1" class="widget widget-text widget-regular-label widget-label" for="ETlVz4CoLmrViD0ZwgkoAH4R7Cb8SwBT">Practice Name</label><input class="widget widget-input-text" id="ETlVz4CoLmrViD0ZwgkoAH4R7Cb8SwBT" type="text" placeholder="Name of Your Practice" parentid="uHlVRp4oPONe0UVgxMOBLT6hSeGerDpr" name="text" value=""></div><div id="k73wTnyPswmkn83D8hHHwWmNZEaXHtzs" class="widget widget-container clearfix"><label id="SMTtiIsUWkEENytlisXQFOfKleafxleo" class="widget widget-text widget-regular-label widget-label" for="Fw9Sg7OIkdfv75VB9i6PxTtsE7ZWyT76">City</label><input class="widget widget-input-text" id="Fw9Sg7OIkdfv75VB9i6PxTtsE7ZWyT76" type="text" placeholder="City" parentid="uHlVRp4oPONe0UVgxMOBLT6hSeGerDpr" name="text1" value=""></div><div id="X1Thi8MmHz5TS9yHsmAbHyp0kcIZNllu" class="widget widget-container clearfix"><label id="ps6tTs1d3TQWfn2IQEX3Eu24kXSLTbQH" class="widget widget-text widget-regular-label widget-label" for="OR5vu5ApsKTIXl2NvNk9dVGBeh6xLXk4">Phone</label><input class="widget widget-input-text" id="OR5vu5ApsKTIXl2NvNk9dVGBeh6xLXk4" type="tel" subtype="phone" placeholder="Phone" parentid="uHlVRp4oPONe0UVgxMOBLT6hSeGerDpr" name="phone" value=""></div><div id="GywEXa4w7cZzqsrHCKUWFfO4b4fR0OFa" class="widget widget-container input-button-container clearfix"><button class="widget widget-input-button" type="submit" id="tWB36eUSkmZVBQTxiEueFMyF6DGthXSZ" parentid="uHlVRp4oPONe0UVgxMOBLT6hSeGerDpr"><div class="widget-overlay"></div>Book a Free Demo</button></div><input type="hidden" name="_name_" value=""><input type="hidden" name="_uid" value="uHlVRp4oPONe0UVgxMOBLT6hSeGerDpr"><input type="hidden" name="_redirect" value=""></form>
+        </div>
+    </div>
+</div>
+<div id="z8zuzFIPQPcRXFz1RgTW2yA3R68ySlbm" class="widget widget-section ">
+    <div class="row">
+        
+        <div class="container ">
+            
+            <div id="oVUxqhndQA6VpErOKEIBBpcXb70NL9y6" class="widget widget-text"><p>601 Van Ness Ave </p><p>San Francisco, CA 94102</p></div><div id="vKpF8sVHORrSX7cCErALvWfDXd3fc3Rb" class="widget widget-text"><p><span style="letter-spacing: 0px;">arvindsr33@gmail.com</span></p><p><span style="letter-spacing: 0px;">650-788-9529</span></p></div><img id="kiWoP4rODqp1r3Siy0r1HmpzZA6PwkBp" width="46" height="46" data-original="https://images.assets-landingi.com/uc/140e6824-a45c-4e3e-b4a4-f54254d3717e/icons8redux500.svg" class="widget widget-image" alt="Image" decoding="async" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
+<div id="nLyGlZ8k5L18qTb8s5JV2aCbA3TfD9px" class="widget widget-text"><p><b>QuantumCare</b></p></div>
+        </div>
+    </div>
+</div><script type="text/javascript" src="./quantum_care_front_desk_files/jquery-3-6-0.min.js" fetchpriority="high"></script><script async="" type="text/javascript" src="./quantum_care_front_desk_files/landend.bootstrap.min.js"></script><script defer="" type="text/javascript" src="./quantum_care_front_desk_files/030724-anchors.js"></script>        <script src="./quantum_care_front_desk_files/frodo.js"></script>
+<script>
+const lpStatsModule = (function () {    
+    const url = "https://stats.landingi.com/visit/1799741";
+    const data = {"lid":1799741,"luuid":"531df640-e522-11ef-8a82-96219f8adac3","lhash":"dca90eea3b305c60a004","fid":1799741,"auuid":"75ff4164-e518-11ef-bb36-32af16f8ce07","acid":336144,"agid":null,"tid":null,"hasAccessToEventTracker":false,"hasAccessToEventTrackerDev":false,"hasAccessToEventTrackerData":false,"hasAccessToVisitWithoutCookie":false,"hasAccessToVisitWithLocalStorage":false,"hasAccessToExternalEvents":false};
+    const cookieName = "ls_sid_1799741";
+
+    if (data.hasAccessToEventTrackerDev) { 
+        console.log('Running runScript in dev mode')
+        frodo.runScriptDev(cookieName, url, data)
+    } else {
+        frodo.runScript(cookieName, url, data)
+    }
+
+    return {
+        getData: function() { return data; },
+        cookieName: function() { return cookieName; },
+        endpoint: function() { return url; },
+        path: function() { return path; }
+    };
+})();
+</script><script defer="" type="text/javascript" src="./quantum_care_front_desk_files/files.js"></script><script defer="" fetchpriority="low" type="text/javascript" src="./quantum_care_front_desk_files/jquery.form.min.js"></script> <script type="text/javascript" src="./quantum_care_front_desk_files/new_landend.js"></script><div><div class="grecaptcha-badge" data-style="bottomright" style="width: 256px; height: 60px; display: block; transition: right 0.3s; position: fixed; bottom: 14px; right: -186px; box-shadow: gray 0px 0px 5px; border-radius: 2px; overflow: hidden;"><div class="grecaptcha-logo"><iframe title="reCAPTCHA" width="256" height="60" role="presentation" name="a-4grwt7m2var4" frameborder="0" scrolling="no" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox allow-storage-access-by-user-activation" src="./quantum_care_front_desk_files/anchor.html"></iframe></div><div class="grecaptcha-error"></div><textarea id="g-recaptcha-response-100000" name="g-recaptcha-response" class="g-recaptcha-response" style="width: 250px; height: 40px; border: 1px solid rgb(193, 193, 193); margin: 10px 25px; padding: 0px; resize: none; display: none;"></textarea></div><iframe style="display: none;" src="./quantum_care_front_desk_files/saved_resource.html"></iframe></div></body></html>
